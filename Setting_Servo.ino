@@ -6,6 +6,6 @@ void setup() {
 }
 
 void loop() {
-  servo.write(0);
+  servo.write(180); //or if motor goes to different way, set 180 degrees
   delay(1200);
 }
