@@ -2,7 +2,7 @@
 Servo servo;
 
 void setup() {
-  servo.attach(6);
+  servo.attach(6); //setting pin and set 90 degrees
 }
 
 void loop() {
