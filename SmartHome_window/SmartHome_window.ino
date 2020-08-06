@@ -12,21 +12,26 @@ void setup() {
   Serial.begin(9600);
   pinMode(A0,INPUT);
 }
-//sensor: 740, humid:65%
+//In this building,bright sensor is usually 740,and humid is 65%
 void loop() {
   sensor();
   temhumi();
+  delay(2000);
   Serial.println("============================");
-  if(sens > 740 && humi > 70){
-    for(int i=0;i<181;i=i+10){
-      servo.write(i);
-      delay(100);
+  if(sens < 740){
+    if(humi < 70) {
+      servo.write(0);
+    }
+    else{
+      servo.write(180);
     }
   }
   else{
-    for(int i=180;i>=0;i=i-10){
-      servo.write(i);
-      delay(100);
+    if(humi < 70) {
+      servo.write(135); 
+    }
+    else{
+      servo.write(180);
     }
   }
 }
@@ -39,7 +44,6 @@ void sensor() {
 
 void temhumi() {
   temperhumid = dht.read(humi,temp);
-  delay(2000);
   Serial.print("temperature: ");
   Serial.println(temp);
   Serial.print("Humidity: ");
